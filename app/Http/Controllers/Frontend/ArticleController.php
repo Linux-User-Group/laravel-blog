@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 
@@ -28,7 +29,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('frontend.articles.create');
     }
 
     /**
@@ -39,7 +40,14 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Article::create([
+            'title' => request('title'),
+            'slug' => Str::slug(request('title')),
+            'content' => request('content'),
+            'image' => request('image')->store('blog') 
+        ]);
+
+        return redirect()->route('frontend.blog.index');
     }
 
     /**
@@ -59,9 +67,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        //
+        return view('frontend.articles.edit', compact('article'));
     }
 
     /**
@@ -71,9 +79,16 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
-        //
+        $article->update([
+            'title' => request('title'),
+            'slug' => Str::slug(request('title')),
+            'content' => request('content'),
+            'image' => request('image')->store('blog') 
+        ]);
+
+        return redirect()->route('frontend.blog.index');
     }
 
     /**
