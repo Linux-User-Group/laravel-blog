@@ -83,8 +83,10 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, $id)
     {
+        $article = Article::find($id);
+
         if($article->image){
             Storage::delete($article->image);
         }
@@ -96,7 +98,7 @@ class ArticleController extends Controller
             'image' => request('image')->store('blog') 
         ]);
 
-        dd($article);
+        // dd($article);
 
         return redirect()->route('frontend.blog.index');
     }
@@ -112,7 +114,7 @@ class ArticleController extends Controller
         $article = Article::find($id);
 
         $article->delete();
-        \Storage::delete($article->image);
+        Storage::delete($article->image);
 
         return redirect()->route('frontend.blog.index');
     }
