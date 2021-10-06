@@ -13,7 +13,7 @@
                         <h1>{{ $data->title }}</h1>
                         <p>{!! Str::limit($data->content, 50) !!}</p>
                         <a href="{{ route('frontend.blog.edit', $data) }}" class="btn btn-outline-success rounded-circle"><i class="far fa-edit"></i></a>
-                        {{-- <a href="{{ route('frontend.blog.delete', $data) }}" class="btn btn-outline-danger rounded-circle"><i class="fas fa-trash"></i></a> --}}
+                        <a href="{{ route('frontend.blog.delete', $data->id) }}" class="btn btn-outline-danger rounded-circle"><i class="fas fa-trash"></i></a>
                     </div>
                     <div class="col-md-3">
                         <img src="{{ asset('storage/'.$data->image) }}"
