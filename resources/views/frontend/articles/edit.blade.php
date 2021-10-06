@@ -11,7 +11,7 @@
             {{ method_field('PATCH') }}
 
             <div class="group">
-                <input type="text" name="title"-value="{{ $article->title }}">
+                <input type="text" name="title" value="{{ $article->title }}">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Title Blog</label>
@@ -22,11 +22,11 @@
             </div>
 
             <div class="form-group">
-                <input type="file" class="form-control-file" required name="image" id="">
+                <input type="file" class="form-control-file" name="image" id="">
             </div>
 
             <div class="form-group">
-                <button class="btn btn-dark float-right" value="save" type="submit">Create</button>
+                <button class="btn btn-dark float-right" value="save" type="submit">Edit</button>
             </div>
 
         </form>

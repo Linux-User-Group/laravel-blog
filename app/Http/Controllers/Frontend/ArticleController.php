@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 
@@ -67,8 +68,11 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit($id)
     {
+        $article = Article::find($id);
+        // dd($article);
+
         return view('frontend.articles.edit', compact('article'));
     }
 
@@ -81,12 +85,18 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        if($article->image){
+            Storage::delete($article->image);
+        }
+
         $article->update([
             'title' => request('title'),
             'slug' => Str::slug(request('title')),
             'content' => request('content'),
             'image' => request('image')->store('blog') 
         ]);
+
+        dd($article);
 
         return redirect()->route('frontend.blog.index');
     }
@@ -99,6 +109,11 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Article::find($id);
+
+        $article->delete();
+        \Storage::delete($article->image);
+
+        return redirect()->route('frontend.blog.index');
     }
 }

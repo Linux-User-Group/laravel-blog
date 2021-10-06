@@ -13,7 +13,6 @@ Route::name('frontend.')->group(function (){
         Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
         Route::resource('/blog', '\App\Http\Controllers\Frontend\ArticleController');
-        Route::get('/blog/{blog}/edit', [ArticleController::class, 'edit'])->name('blog.edit');
-        Route::patch('/blog/{blog}',  [ArticleController::class, 'update'])->name('blog.update');
+        Route::get('/blog/delete/{blog}', [ArticleController::class, 'destroy'])->name('blog.delete');
     });
 });
