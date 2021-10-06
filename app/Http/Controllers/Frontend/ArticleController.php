@@ -114,7 +114,7 @@ class ArticleController extends Controller
         $article = Article::find($id);
 
         $article->delete();
-        \Storage::delete($article->image);
+        Storage::delete($article->image);
 
         return redirect()->route('frontend.blog.index');
     }
