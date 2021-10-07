@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ArticleController extends Controller
 {
@@ -47,7 +48,7 @@ class ArticleController extends Controller
             'content' => request('content'),
             'image' => request('image')->store('blog') 
         ]);
-
+        Alert::success('Berhasil', 'Artikel Berhasil Disimpan!!');
         return redirect()->route('frontend.blog.index');
     }
 
@@ -99,7 +100,7 @@ class ArticleController extends Controller
         ]);
 
         // dd($article);
-
+        Alert::success('Berhasil', 'Artikel Berhasil Diedit!!');
         return redirect()->route('frontend.blog.index');
     }
 
@@ -115,7 +116,7 @@ class ArticleController extends Controller
 
         $article->delete();
         Storage::delete($article->image);
-
+        Alert::success('Berhasil', 'Artikel Berhasil Dihapus!!');
         return redirect()->route('frontend.blog.index');
     }
 }
