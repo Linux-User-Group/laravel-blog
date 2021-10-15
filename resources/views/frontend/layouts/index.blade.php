@@ -39,7 +39,7 @@
                 <div class="navbar-nav">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Beranda</a>
+                            <a class="nav-link active" aria-current="page" href="/">Beranda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('frontend.blog.index') }}">List Blog</a>

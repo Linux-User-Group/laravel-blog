@@ -12,7 +12,7 @@ Route::name('frontend.')->group(function (){
 
         Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-        Route::resource('/blog', '\App\Http\Controllers\Frontend\ArticleController');
+        Route::resource('/blog', '\App\Http\Controllers\Frontend\ArticleController')->middleware('auth');
         Route::get('/blog/delete/{blog}', [ArticleController::class, 'destroy'])->name('blog.delete');
     });
 });
