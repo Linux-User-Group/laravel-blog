@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::name('frontend.')->group(function (){
 
-    
+    // Function Group Front-End
     Route::group([
         'namespace' => 'Frontend'
     ], function () {
